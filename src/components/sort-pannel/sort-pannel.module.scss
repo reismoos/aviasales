@@ -1,0 +1,33 @@
+.sort-pannel {
+    display: flex;
+
+    &__btn {
+        height: 50px;
+        color: #4A4A4A;
+        text-align: center;
+        font-family: Open Sans;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 20px; 
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        background-color: rgba(255, 255, 255, 1);
+        border: 1px solid rgba(223, 229, 236, 1);
+        flex-basis: calc(100% / 3);
+    }
+
+    &__btn_active {
+        color: #FFF;
+        background-color: rgba(33, 150, 243, 1);
+        border-color: rgba(33, 150, 243, 1);
+    }
+
+    &__btn:first-child {
+        border-radius: 5px 0 0 5px;
+    }
+
+    &__btn:last-child {
+        border-radius: 0 5px 5px 0;
+    }
+}

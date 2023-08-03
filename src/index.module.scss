@@ -1,0 +1,13 @@
+body {
+  background-color: #F3F7FA;
+  margin: 0;
+}
+
+button {
+  transition: 0.1s;
+}
+
+button:hover {
+  cursor: url('./assets/img/Cursor.svg'), auto ;
+  transform: translate(0, 2px);
+}
