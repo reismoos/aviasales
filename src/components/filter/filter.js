@@ -1,18 +1,27 @@
+import { useDispatch, useSelector } from 'react-redux'
+
+import { changeFilter } from '../../actions/actions'
+
 import classes from './filter.module.scss'
-console.log(classes)
-const filters = [
-  { id: 1, label: 'Все' },
-  { id: 2, label: 'Без пересадок' },
-  { id: 3, label: '1 пересадка' },
-  { id: 4, label: '2 пересадки' },
-  { id: 5, label: '3 пересадки' },
-]
+
 const Filter = () => {
+  const { filters } = useSelector((state) => state)
+  const dispatch = useDispatch()
+
+  const onChangeFilter = (id) => {
+    dispatch(changeFilter(id))
+  }
+
   const inputs = filters.map((filter) => {
     return (
       <li key={filter.id} className={classes['filter__item']}>
         <label className={classes['filter__label']}>
-          <input type="checkbox" className={classes['filter__checkbox']} />
+          <input
+            type="checkbox"
+            checked={filter.checked}
+            onChange={() => onChangeFilter(filter.id)}
+            className={classes['filter__checkbox']}
+          />
           <span className={classes['filter__new-checkbox']}></span>
           {filter.label}
         </label>

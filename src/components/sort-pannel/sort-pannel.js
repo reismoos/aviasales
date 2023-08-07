@@ -1,12 +1,48 @@
+import { useDispatch, useSelector } from 'react-redux'
+
+import { changeSort } from '../../actions/actions'
+
 import classes from './sort-pannel.module.scss'
 
+const btns = [
+  { value: 'cheap', label: 'Самый дешевый' },
+  { value: 'expensive', label: 'Самый быстрый' },
+  { value: 'optimal', label: 'Оптимальный' },
+]
+
 const SortPannel = () => {
+  const dispatch = useDispatch()
+  const { sort } = useSelector((state) => state)
+  const buttons = btns.map((btn) => {
+    return (
+      <Button
+        key={btn.value}
+        className={
+          btn.value === sort
+            ? `${classes['sort-pannel__btn']} ${classes['sort-pannel__btn_active']}`
+            : classes['sort-pannel__btn']
+        }
+        label={btn.label}
+        value={btn.value}
+        changeSort={(e) => dispatch(changeSort(e.target.value))}
+      />
+    )
+  })
   return (
     <div className={classes['sort-pannel']}>
-      <button className={`${classes['sort-pannel__btn']} ${classes['sort-pannel__btn_active']}`}>Самый дешевый</button>
+      {buttons}
+      {/*       <button className={`${classes['sort-pannel__btn']} ${classes['sort-pannel__btn_active']}`}>Самый дешевый</button>
       <button className={classes['sort-pannel__btn']}>Самый быстрый</button>
-      <button className={classes['sort-pannel__btn']}>Оптимальный</button>
+      <button className={classes['sort-pannel__btn']}>Оптимальный</button> */}
     </div>
+  )
+}
+
+const Button = ({ className, label, changeSort, value }) => {
+  return (
+    <button className={className} onClick={changeSort} value={value}>
+      {label}
+    </button>
   )
 }
 
