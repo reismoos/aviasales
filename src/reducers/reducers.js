@@ -1,5 +1,8 @@
 /* eslint-disable prettier/prettier */
 const initialState = {
+  ticketLoading: false,
+  allTickets: [],
+  ticketsForRendering: [],
   sort: 'cheap',
   filters: [
     { id: 1, label: 'Все', checked: true },
@@ -55,6 +58,26 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       sort: action.payload
+    }
+  case 'GET_TICKETS':
+    return {
+      ...state,
+      allTickets: [...state.allTickets, ...action.payload],
+    }
+  case 'TICKETS_LOADING':
+    return {
+      ...state,
+      ticketLoading: true
+    }
+  case 'TICKETS_LOADED':
+    return {
+      ...state,
+      ticketLoading: false
+    }
+  case 'GET_TICKETS_FOR_RENDERING':
+    return {
+      ...state,
+      ticketsForRendering: action.payload
     }
   default:
     return state

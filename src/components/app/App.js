@@ -8,7 +8,6 @@ import classes from './App.module.scss'
 const { wrapper, header__logo, main } = classes
 
 function App() {
-  console.log(classes)
   return (
     <div className={wrapper}>
       <Header />

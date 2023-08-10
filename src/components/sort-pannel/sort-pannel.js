@@ -28,14 +28,7 @@ const SortPannel = () => {
       />
     )
   })
-  return (
-    <div className={classes['sort-pannel']}>
-      {buttons}
-      {/*       <button className={`${classes['sort-pannel__btn']} ${classes['sort-pannel__btn_active']}`}>Самый дешевый</button>
-      <button className={classes['sort-pannel__btn']}>Самый быстрый</button>
-      <button className={classes['sort-pannel__btn']}>Оптимальный</button> */}
-    </div>
-  )
+  return <div className={classes['sort-pannel']}>{buttons}</div>
 }
 
 const Button = ({ className, label, changeSort, value }) => {
