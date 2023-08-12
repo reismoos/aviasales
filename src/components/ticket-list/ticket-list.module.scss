@@ -21,3 +21,24 @@
     border: none;
     border-radius: 5px;
 }
+
+.loading-bar {
+    width: 100%;
+    height: 5px;
+    background-color: rgb(134, 192, 240);
+    overflow: hidden;
+}
+
+.loading-stripe {
+    width: 20%;
+    height: 100%;
+    background-color: rgb(4, 134, 241);
+    animation: loading 2s linear infinite;
+    position: relative;
+    left: -20%;
+}
+
+@keyframes loading {
+    0%{transform: translate(0);}
+    100%{transform: translate(600%);}
+}

@@ -1,12 +1,22 @@
 /* eslint-disable prettier/prettier */
-const request = async () => {
+export const requestSearchId = async () => {
   const fetchSearchId = await fetch('https://aviasales-test-api.kata.academy/search').then((res) => res.json())
-  const fetchTickets = await fetch(
-    `https://aviasales-test-api.kata.academy/tickets?searchId=${fetchSearchId.searchId}`
-  )
-  const responsTickets = await fetchTickets.json()
+  
 
-  return responsTickets
+  return fetchSearchId
 }
 
-export default request
+export const requestFetchTickets = async (searchId) => {
+
+
+  let fetchTickets = await fetch(
+    `https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`
+  )
+
+  if (!fetchTickets.ok) {
+    throw fetchTickets
+  }
+  const responsTickets = await fetchTickets.json()
+  return responsTickets
+
+}

@@ -7,12 +7,11 @@ import classes from './sort-pannel.module.scss'
 const btns = [
   { value: 'cheap', label: 'Самый дешевый' },
   { value: 'expensive', label: 'Самый быстрый' },
-  { value: 'optimal', label: 'Оптимальный' },
 ]
 
 const SortPannel = () => {
   const dispatch = useDispatch()
-  const { sort } = useSelector((state) => state)
+  const { sort, allTickets } = useSelector((state) => state)
   const buttons = btns.map((btn) => {
     return (
       <Button
@@ -24,7 +23,7 @@ const SortPannel = () => {
         }
         label={btn.label}
         value={btn.value}
-        changeSort={(e) => dispatch(changeSort(e.target.value))}
+        changeSort={(e) => dispatch(changeSort(allTickets, e.target.value))}
       />
     )
   })

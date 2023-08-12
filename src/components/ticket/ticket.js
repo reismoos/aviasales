@@ -1,9 +1,11 @@
+import React from 'react'
+
 import { getTime } from '../../service/date'
 import { transfers } from '../../service/transfers'
 
 import classes from './ticket.module.scss'
 
-const Ticket = ({ price, aviaCompanyCode, segments }) => {
+let Ticket = ({ price, aviaCompanyCode, segments }) => {
   const [firstWay, secondWay] = segments
   const firstWayTimes = getTime(firstWay.date, firstWay.duration)
   const secondWayTimes = getTime(secondWay.date, secondWay.duration)
@@ -47,10 +49,4 @@ const Ticket = ({ price, aviaCompanyCode, segments }) => {
   )
 }
 
-/* Ticket.defaultProps = {
-  price: 0,
-  aviaCompanyCode: 0,
-  segments: [],
-} */
-
-export default Ticket
+export default Ticket = React.memo(Ticket)

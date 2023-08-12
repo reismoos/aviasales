@@ -2,8 +2,11 @@
 const initialState = {
   ticketLoading: false,
   allTickets: [],
-  ticketsForRendering: [],
+  renderingTicketsCount: 5,
   sort: 'cheap',
+  searchId: '',
+  stopFetching: false,
+  error: false,
   filters: [
     { id: 1, label: 'Все', checked: true },
     { id: 2, label: 'Без пересадок', checked: true },
@@ -62,7 +65,7 @@ const reducer = (state = initialState, action) => {
   case 'GET_TICKETS':
     return {
       ...state,
-      allTickets: [...state.allTickets, ...action.payload],
+      allTickets: state.allTickets.concat(action.payload),
     }
   case 'TICKETS_LOADING':
     return {
@@ -74,10 +77,25 @@ const reducer = (state = initialState, action) => {
       ...state,
       ticketLoading: false
     }
-  case 'GET_TICKETS_FOR_RENDERING':
+  case 'SET_SEARCH_ID':
     return {
       ...state,
-      ticketsForRendering: action.payload
+      searchId: action.payload
+    }
+  case 'STOP_FETCHING':
+    return {
+      ...state,
+      stopFetching: true
+    }
+  case 'ERROR':
+    return {
+      ...state,
+      error: true
+    }
+  case 'RENDER_MORE_TICKETS':
+    return {
+      ...state,
+      renderingTicketsCount: state.renderingTicketsCount + 5
     }
   default:
     return state
